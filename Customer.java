@@ -1,46 +1,53 @@
-package com.miniBankApplicationArrayList;
+package com.testBank;
 
 import java.util.ArrayList;
 
 public class Customer {
 
-    private String custName;
-    private ArrayList<Double> transaction;
-    private double transactionAmmount;
+    private String customerName;
+    private double transactionAmount;
+    private ArrayList<Double> transactions;
 
-    public Customer(String custName, double transactionAmmount) {
-        this.custName = custName;
-        this.transactionAmmount = transactionAmmount;
-        this.transaction = new ArrayList<Double>();
-        transaction.add(Double.valueOf(transactionAmmount));
+    public Customer(String customerName, double transactionAmount) {
+        this.transactions = new ArrayList<Double>();
+        this.customerName = customerName;
+        this.transactionAmount = transactionAmount;
+        transactions.add(Double.valueOf(transactionAmount));
     }
 
-    public String getCustName() {
-        return custName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public Customer setCustName(String custName) {
-        this.custName = custName;
-        return this;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public ArrayList<Double> getTransaction() {
-        return transaction;
+    public ArrayList<Double> getTransactions() {
+        return transactions;
     }
 
-    public Customer setTransaction(ArrayList<Double> transaction) {
-        this.transaction = transaction;
-        return this;
+    public void setTransactions(ArrayList<Double> transactions) {
+        this.transactions = transactions;
     }
 
-    public double getTransactionAmmount() {
-        return transactionAmmount;
+    public static Customer addNewCustomer(String customerName, double transactionAmount){
+        return new Customer(customerName,transactionAmount);
     }
 
-    public Customer setTransactionAmmount(double transactionAmmount) {
-        this.transactionAmmount = transactionAmmount;
-        return this;
+    public double getTransactionAmount() {
+        return transactionAmount;
     }
 
+    public boolean addTransaction(double amount){
+        getTransactions().add(Double.valueOf(amount));
+        return true;
+    }
 
+    public void printTransaction(){
+        System.out.println("You have " + transactions.size() + " transactions");
+        for (int i=0; i<transactions.size();i++){
+            System.out.println((i+1) + ". " + transactions.get(i).doubleValue());
+        }
+    }
 }
